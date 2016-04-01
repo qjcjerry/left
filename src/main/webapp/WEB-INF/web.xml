@@ -76,7 +76,6 @@
 		</init-param>
 	</filter>
 
-	...
 
 	<!-- Make sure any request you want accessible to Shiro is filtered. /* catches all -->
 	<!-- requests.  Usually this filter mapping is defined first (before all others) to -->
@@ -104,6 +103,8 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>mvc-dispatcher</servlet-name>
+		<url-pattern>*.html</url-pattern>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
 </web-app>

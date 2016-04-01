@@ -61,7 +61,6 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/users/**=noSessionCreation,rest
-			
 				
 			</value>
 		</property>

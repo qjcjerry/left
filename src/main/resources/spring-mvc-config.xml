@@ -47,6 +47,7 @@
 	<mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
 	<mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
 	<mvc:resources mapping="/fonts/**" location="/WEB-INF/fonts/" />
+	<mvc:resources mapping="/html/**" location="/WEB-INF/html/" />
 
 
 
@@ -63,6 +64,7 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
+
 	
 	 <import resource="spring-mvc-shiro.xml"/>
 	
