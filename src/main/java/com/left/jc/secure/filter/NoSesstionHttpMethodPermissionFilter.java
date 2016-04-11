@@ -40,7 +40,7 @@ public class NoSesstionHttpMethodPermissionFilter extends
 
 		String name = req.getHeader("name");
 		String pass = req.getHeader("pass");
-
+        System.out.println("name:"+name);
 		StatelessToken token = new StatelessToken();
 
 		// 如果是带验证的，则进行验证，否则没有验证，只能进行一般的请求

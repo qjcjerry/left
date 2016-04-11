@@ -28,4 +28,5 @@ public class HomeController {
 //      request.getRequestDispatcher("index.html").forward(request, response);
         response.sendRedirect(request.getContextPath()+"/html"+request.getServletPath());
     }
+    
 }

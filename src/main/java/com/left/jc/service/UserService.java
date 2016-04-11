@@ -29,7 +29,9 @@ public class UserService  {
         return userMapper.selectByPrimaryKey(id);
     }
 
-
+    public User getUserByName(String name){
+        return userMapper.selectByPrimaryKey(name);
+    }
 
     public boolean isExist(User user){
         return  userMapper.selectCount(user)>0;

@@ -1,11 +1,10 @@
 package com.left.jc.secure.realm;
 
 import com.left.jc.jopo.UserPrincipal;
+import com.left.jc.model.User;
+import com.left.jc.service.UserService;
 import org.apache.log4j.Logger;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -24,6 +23,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 public class StatelessRealm extends AuthorizingRealm {
 	private static Logger logger = Logger.getLogger(StatelessRealm.class);
 
+	@Autowired
+	UserService userService;
 	/*@Autowired
 	@Qualifier("userService")
 	IUserService userService;
@@ -32,7 +33,7 @@ public class StatelessRealm extends AuthorizingRealm {
 	 * 获取认证信息
 	 */
 	@Override
-	protected AuthenticationInfo doGetAuthenticationInfo(
+	/*protected AuthenticationInfo doGetAuthenticationInfo(
 
 	AuthenticationToken token) throws AuthenticationException {
 
@@ -42,12 +43,12 @@ public class StatelessRealm extends AuthorizingRealm {
 
 		String pass = statelessToken.getPassword();
 
-		/*User user = userService.getUserByPhonePass(userPrincipal.getUsername(),
+		*//*User user = userService.getUserByPhonePass(userPrincipal.getUsername(),
 				pass);
 
 		if (user == null) {
 			throw new AccountException();
-		}*/
+		}*//*
 
 		statelessToken.setUser(null);
 		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo();
@@ -60,13 +61,23 @@ public class StatelessRealm extends AuthorizingRealm {
 
 		return authenticationInfo;
 
+	}*/
+	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
+		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+		User user = userService.getUserById(1);
+		System.out.println("kello"+user.getName());
+		if (user != null) {
+			return new SimpleAuthenticationInfo(user.getName(), user.getPassword(), getName());
+		} else {
+			return null;
+		}
 	}
 
 	@Override
 	public boolean supports(AuthenticationToken token) {
 
-		boolean result = token instanceof StatelessToken;
-
+		//boolean result = token instanceof StatelessToken;
+		boolean result = token instanceof UsernamePasswordToken;
 		return result;
 
 	}

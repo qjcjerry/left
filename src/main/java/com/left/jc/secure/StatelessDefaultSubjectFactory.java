@@ -5,7 +5,7 @@ import org.apache.shiro.subject.SubjectContext;
 import org.apache.shiro.web.mgt.DefaultWebSubjectFactory;
 
 /**
- * 实现不穿件session的factory
+ * 实现不创建session的factory
 * @ClassName  StatelessDefaultSubjectFactory 
 * @Description   
 * @Author chenkaihua
